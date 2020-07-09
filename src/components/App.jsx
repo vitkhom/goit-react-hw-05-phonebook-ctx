@@ -84,11 +84,18 @@ class App extends Component {
   };
 
   loadData = () => {
+    let savedTheme;
     const savedContacts = JSON.parse(localStorage.getItem('phonebook'));
-    const savedTheme = JSON.parse(localStorage.getItem('theme'));
+    // const savedTheme = JSON.parse(localStorage.getItem('theme'));
 
     if (savedContacts) {
       this.setState({ contacts: savedContacts });
+    }
+
+    try {
+      savedTheme = JSON.parse(localStorage.getItem('theme'));
+    } catch (e) {
+      console.log('Unable to load saved data');
     }
 
     if (savedTheme) {
