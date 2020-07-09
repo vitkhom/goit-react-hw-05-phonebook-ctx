@@ -84,9 +84,14 @@ class App extends Component {
   };
 
   loadData = () => {
+    let savedContacts;
     let savedTheme;
-    const savedContacts = JSON.parse(localStorage.getItem('phonebook'));
-    // const savedTheme = JSON.parse(localStorage.getItem('theme'));
+
+    try {
+      savedContacts = JSON.parse(localStorage.getItem('phonebook'));
+    } catch (e) {
+      toast.warn('Unable to load saved data');
+    }
 
     if (savedContacts) {
       this.setState({ contacts: savedContacts });
@@ -95,7 +100,7 @@ class App extends Component {
     try {
       savedTheme = JSON.parse(localStorage.getItem('theme'));
     } catch (e) {
-      console.log('Unable to load saved data');
+      toast.warn('Unable to load saved data');
     }
 
     if (savedTheme) {
