@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import withTheme from '../../hoc/withTheme';
 
@@ -73,6 +74,13 @@ const Wrapper = ({ title, toggleTheme, theme, children }) => {
       </div>
     </>
   );
+};
+
+Wrapper.propTypes = {
+  title: PropTypes.string.isRequired,
+  toggleTheme: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
+  children: PropTypes.array,
 };
 
 export default withTheme(Wrapper);

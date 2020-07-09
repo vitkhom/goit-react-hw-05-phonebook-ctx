@@ -12,7 +12,7 @@ const Section = ({ title, children }) => {
 
 Section.propTypes = {
   title: PropTypes.string,
-  chikdren: PropTypes.object,
+  children: PropTypes.array,
 };
 
 export default Section;
