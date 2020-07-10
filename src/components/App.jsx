@@ -12,6 +12,7 @@ import { themeConfig } from '../context/ThemeContext';
 import { v4 as uuidv4 } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import localStorageFunc from '../utils/localStorageSave';
 import './App.scss';
 
 class App extends Component {
@@ -20,6 +21,14 @@ class App extends Component {
     filter: '',
     theme: 'light',
   };
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  componentDidUpdate() {
+    this.saveData();
+  }
 
   toggleTheme = this.toggleTheme.bind(this);
 
@@ -79,42 +88,22 @@ class App extends Component {
   };
 
   saveData = () => {
-    localStorage.setItem('phonebook', JSON.stringify(this.state.contacts));
-    localStorage.setItem('theme', JSON.stringify(this.state.theme));
+    localStorageFunc.save('phonebook', this.state.contacts);
+    localStorageFunc.save('theme', this.state.theme);
   };
 
   loadData = () => {
-    let savedContacts;
-    let savedTheme;
+    const contacts = localStorageFunc.get('phonebook');
+    const theme = localStorageFunc.get('theme');
 
-    try {
-      savedContacts = JSON.parse(localStorage.getItem('phonebook'));
-    } catch (e) {
-      toast.warn('Unable to load saved data');
+    if (contacts) {
+      this.setState({ contacts });
     }
 
-    if (savedContacts) {
-      this.setState({ contacts: savedContacts });
-    }
-
-    try {
-      savedTheme = JSON.parse(localStorage.getItem('theme'));
-    } catch (e) {
-      toast.warn('Unable to load saved data');
-    }
-
-    if (savedTheme) {
-      this.setState({ theme: savedTheme });
+    if (theme) {
+      this.setState({ theme });
     }
   };
-
-  componentDidMount() {
-    this.loadData();
-  }
-
-  componentDidUpdate() {
-    this.saveData();
-  }
 
   render() {
     const { contacts } = this.state;
