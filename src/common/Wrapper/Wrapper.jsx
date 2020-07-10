@@ -80,7 +80,7 @@ Wrapper.propTypes = {
   title: PropTypes.string.isRequired,
   toggleTheme: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  children: PropTypes.array,
+  children: PropTypes.object,
 };
 
 export default withTheme(Wrapper);
