@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { ToastContainer, toast } from 'react-toastify';
 
 import ContactForm from '../ContactForm';
 import Section from '../../common/Section';
 import Filter from '../Filter';
 import ContactList from '../ContactList';
 
-import { v4 as uuidv4 } from 'uuid';
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import 'react-toastify/dist/ReactToastify.css';
-
 import storage from '../../utils/localStorageSave';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 class Phonebook extends Component {
   state = {

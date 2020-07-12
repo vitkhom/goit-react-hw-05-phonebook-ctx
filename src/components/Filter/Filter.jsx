@@ -22,7 +22,7 @@ class Filter extends Component {
   };
 
   render() {
-    const { value } = this.state;
+    const { filter } = this.state;
 
     return (
       <div className="filter">
@@ -30,7 +30,7 @@ class Filter extends Component {
         <input
           type="text"
           name="filter"
-          value={value}
+          value={filter}
           onChange={this.handleFilterChange}
         />
       </div>
